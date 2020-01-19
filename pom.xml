@@ -58,6 +58,7 @@
     <modules>
         <module>video-common</module>
         <module>video-pojo</module>
+        <module>video-mapper</module>
     </modules>
 
     <build>
