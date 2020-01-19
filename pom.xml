@@ -60,6 +60,7 @@
         <module>video-pojo</module>
         <module>video-mapper</module>
         <module>video-service</module>
+        <module>video-api</module>
     </modules>
 
     <build>
