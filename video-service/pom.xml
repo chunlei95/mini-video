@@ -13,4 +13,12 @@
     <name>video-service</name>
     <description>业务逻辑层</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.video</groupId>
+            <artifactId>video-mapper</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 </project>
