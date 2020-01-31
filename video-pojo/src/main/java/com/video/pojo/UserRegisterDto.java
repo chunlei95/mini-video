@@ -16,10 +16,4 @@ public class UserRegisterDto {
     @ApiModelProperty(value = "密码", required = true)
     private String password;
 
-//    @ApiModelProperty(value = "昵称")
-//    private String nickName;
-//
-//    @ApiModelProperty(value = "头像路径")
-//    private String icon;
-
 }
