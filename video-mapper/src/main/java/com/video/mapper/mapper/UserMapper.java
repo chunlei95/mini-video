@@ -1,6 +1,7 @@
 package com.video.mapper.mapper;
 
 import com.video.pojo.model.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -8,6 +9,7 @@ import java.util.List;
  * @author xzmeasy
  * @date 2020/1/20
  */
+@SuppressWarnings("JavadocReference")
 public interface UserMapper {
 
     /**
@@ -32,5 +34,30 @@ public interface UserMapper {
      * @return User with specified username.
      */
     User selectUserByUsername(String username);
+
+    /**
+     * Search user by username and password.
+     *
+     * @param username {@link User#username}
+     * @param password {@link User#password}
+     * @return {@link User}
+     */
+    User selectUserByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+
+    /**
+     * Search user by primary key.
+     *
+     * @param userId user id
+     * @return {@link User} that with specified {@code userId}.
+     */
+    User selectUserByPrimaryKey(String userId);
+
+    /**
+     * Update user information.
+     *
+     * @param user User information need to be updated.
+     * @return Updated count.
+     */
+    int updateByPrimaryKey(User user);
 
 }

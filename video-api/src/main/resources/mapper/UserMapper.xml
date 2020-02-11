@@ -15,6 +15,20 @@
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
 
+    <sql id="query_fileds">
+        select id,
+               username,
+               password,
+               nickname,
+               icon,
+               fans_count,
+               follow_count,
+               praise_count,
+               create_time,
+               update_time
+        from user
+    </sql>
+
     <insert id="insert" parameterType="com.video.pojo.model.User" keyProperty="id">
         insert into user (id, username, password,
                           nickname, icon, fans_count,
@@ -39,6 +53,7 @@
                update_time
         from user
     </select>
+
     <select id="selectUserByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
         select id,
                username,
@@ -54,4 +69,36 @@
         where username = #{username}
     </select>
 
+    <select id="selectUserByUsernameAndPassword" resultMap="BaseResultMap">
+        select id,
+               username,
+               nickname,
+               icon,
+               fans_count,
+               follow_count,
+               praise_count,
+               create_time,
+               update_time
+        from user
+        where username = #{username}
+          and password = #{password}
+    </select>
+
+    <select id="selectUserByPrimaryKey" resultMap="BaseResultMap" parameterType="string">
+        <include refid="query_fileds"/>
+        where id = #{userId}
+    </select>
+
+    <update id="updateByPrimaryKey" parameterType="com.video.pojo.model.User">
+        update user
+        set username     = #{username},
+            password     = #{password},
+            nickname     = #{nickname},
+            icon         = #{icon},
+            fans_count   = #{fansCount},
+            praise_count = #{praiseCount},
+            follow_count = #{followCount},
+            update_time  = #{updateTime}
+        where id = #{id}
+    </update>
 </mapper>

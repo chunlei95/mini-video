@@ -49,7 +49,7 @@
             cover_path    = #{coverPath,jdbcType=VARCHAR},
             like_counts   = #{likeCounts,jdbcType=BIGINT},
             status        = #{status,jdbcType=INTEGER},
-            create_time   = #{createTime,jdbcType=TIMESTAMP},
+#             create_time   = #{createTime,jdbcType=TIMESTAMP},
             update_time   = #{updateTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=VARCHAR}
     </update>
