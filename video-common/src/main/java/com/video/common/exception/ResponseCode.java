@@ -3,6 +3,8 @@ package com.video.common.exception;
 /**
  * @author xzmeasy
  * @date 2020/2/2
+ * @see ExceptionInfo
+ * @deprecated
  */
 public class ResponseCode {
 
