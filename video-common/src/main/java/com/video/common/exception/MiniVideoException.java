@@ -44,6 +44,12 @@ public class MiniVideoException extends RuntimeException {
         this.zhMessage = zhMessage;
     }
 
+    public MiniVideoException(ExceptionInfo exceptionInfo) {
+        super(exceptionInfo.getMessage());
+        this.code = exceptionInfo.getCode();
+        this.zhMessage = exceptionInfo.getZhMessage();
+    }
+
     public static void canNotBeNull(String key) {
         String message = key + " can't be null";
         String zhMessage = key + "不能为空";
