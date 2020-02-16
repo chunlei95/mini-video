@@ -11,6 +11,7 @@
         <result column="video_path" jdbcType="VARCHAR" property="videoPath"/>
         <result column="video_width" jdbcType="INTEGER" property="videoWidth"/>
         <result column="video_height" jdbcType="INTEGER" property="videoHeight"/>
+        <result column="video_size" jdbcType="BIGINT" property="videoSize"/>
         <result column="cover_path" jdbcType="VARCHAR" property="coverPath"/>
         <result column="like_counts" jdbcType="BIGINT" property="likeCounts"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
@@ -27,14 +28,12 @@
     <insert id="insert" parameterType="com.video.pojo.model.Video">
         insert into video (id, user_id, audio_id,
                            video_desc, video_seconds, video_path,
-                           video_width, video_height, cover_path,
-                           like_counts, status, create_time,
-                           update_time)
+                           video_width, video_height, video_size, cover_path,
+                           like_counts, status)
         values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{audioId,jdbcType=VARCHAR},
                 #{videoDesc,jdbcType=VARCHAR}, #{videoSeconds,jdbcType=REAL}, #{videoPath,jdbcType=VARCHAR},
-                #{videoWidth,jdbcType=INTEGER}, #{videoHeight,jdbcType=INTEGER}, #{coverPath,jdbcType=VARCHAR},
-                #{likeCounts,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
-                #{updateTime,jdbcType=TIMESTAMP})
+                #{videoWidth,jdbcType=INTEGER}, #{videoHeight,jdbcType=INTEGER}, #{videoSize,jdbcType=BIGINT},
+                #{coverPath,jdbcType=VARCHAR}, #{likeCounts,jdbcType=BIGINT}, #{status,jdbcType=INTEGER})
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="com.video.pojo.model.Video">
@@ -46,6 +45,7 @@
             video_path    = #{videoPath,jdbcType=VARCHAR},
             video_width   = #{videoWidth,jdbcType=INTEGER},
             video_height  = #{videoHeight,jdbcType=INTEGER},
+            video_size    = #{videoSize,jdbcType=BIGINT},
             cover_path    = #{coverPath,jdbcType=VARCHAR},
             like_counts   = #{likeCounts,jdbcType=BIGINT},
             status        = #{status,jdbcType=INTEGER},
@@ -63,6 +63,7 @@
                video_path,
                video_width,
                video_height,
+               video_size,
                cover_path,
                like_counts,
                status,
@@ -81,6 +82,7 @@
                video_path,
                video_width,
                video_height,
+               video_size,
                cover_path,
                like_counts,
                status,

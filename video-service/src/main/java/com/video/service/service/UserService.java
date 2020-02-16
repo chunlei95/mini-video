@@ -1,6 +1,6 @@
 package com.video.service.service;
 
-import com.video.pojo.dto.UserLoginDto;
+import com.video.pojo.dto.user.UserLoginDto;
 import com.video.pojo.model.User;
 
 /**

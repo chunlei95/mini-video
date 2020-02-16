@@ -1,5 +1,6 @@
 package com.video.common.response;
 
+import com.video.common.exception.ExceptionInfo;
 import lombok.Data;
 
 /**
@@ -38,6 +39,10 @@ public class ResponseResult<T> {
 
     public static <T> ResponseResult<T> error(Integer code, String message) {
         return new ResponseResult<T>(code, message);
+    }
+
+    public static <T> ResponseResult<T> error(ExceptionInfo exceptionInfo) {
+        return new ResponseResult<T>(exceptionInfo.getCode(), exceptionInfo.getZhMessage());
     }
 
     public static <T> ResponseResult<T> error(Integer code, String message, T data) {

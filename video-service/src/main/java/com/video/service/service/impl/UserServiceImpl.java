@@ -2,9 +2,8 @@ package com.video.service.service.impl;
 
 import com.video.common.exception.MiniVideoException;
 import com.video.common.exception.ResponseCode;
-import com.video.common.generator.UidGenerator;
 import com.video.mapper.mapper.UserMapper;
-import com.video.pojo.dto.UserLoginDto;
+import com.video.pojo.dto.user.UserLoginDto;
 import com.video.pojo.model.User;
 import com.video.service.service.UserService;
 import org.springframework.stereotype.Service;
@@ -16,6 +15,7 @@ import java.util.Objects;
  * @author xzmeasy
  * @date 2020/1/20
  **/
+@Transactional(rollbackFor = Exception.class)
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -36,7 +36,6 @@ public class UserServiceImpl implements UserService {
         if (Objects.nonNull(userByName)) {
             throw new MiniVideoException(1000, "username is already in use", "用户名已经被使用");
         }
-        user.setId(UidGenerator.generateId());
         // TODO: 2020/2/2 MD5密码加密
         userMapper.insert(user);
     }

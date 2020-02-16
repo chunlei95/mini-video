@@ -1,15 +1,16 @@
-package com.video.api.controller;
+package com.video.api.controller.user;
 
-import com.qiniu.autoconfigure.response.CustomPutRet;
+import com.qiniu.autoconfigure.response.image.ImagePutRet;
 import com.qiniu.autoconfigure.service.QiNiuService;
-import com.video.api.transfer.UserTransfer;
-import com.video.api.util.UserUtil;
+import com.video.api.transfer.user.UserTransfer;
+import com.video.api.util.user.UserUtil;
 import com.video.common.exception.MiniVideoException;
 import com.video.common.exception.ResponseCode;
+import com.video.common.generator.IdGenerator;
 import com.video.common.redis.RedisService;
 import com.video.common.response.ResponseResult;
-import com.video.pojo.dto.UserLoginDto;
-import com.video.pojo.dto.UserRegisterDto;
+import com.video.pojo.dto.user.UserLoginDto;
+import com.video.pojo.dto.user.UserRegisterDto;
 import com.video.pojo.model.User;
 import com.video.pojo.vo.ImageUploadVo;
 import com.video.pojo.vo.UserLoginVo;
@@ -33,22 +34,29 @@ import java.util.Objects;
 @RestController
 public class UserController {
 
+    private final IdGenerator idGenerator;
+
     private final QiNiuService qiNiuService;
 
     private final UserService userService;
 
     private final RedisService redisService;
 
-    public UserController(UserService userService, RedisService redisService, QiNiuService qiNiuService) {
+    public UserController(UserService userService,
+                          RedisService redisService,
+                          QiNiuService qiNiuService,
+                          IdGenerator idGenerator) {
         this.userService = userService;
         this.redisService = redisService;
         this.qiNiuService = qiNiuService;
+        this.idGenerator = idGenerator;
     }
 
     @ApiOperation("用户注册")
     @PostMapping("/user/register")
     public ResponseResult<User> register(@RequestBody UserRegisterDto userRegisterDto) {
         User user = UserTransfer.transformToUser(userRegisterDto);
+        user.setId(idGenerator.generate());
         userService.createUser(user);
         return ResponseResult.ok();
     }
@@ -97,8 +105,8 @@ public class UserController {
             throw new MiniVideoException(ResponseCode.USER_IS_NOT_EXIST, "user is not exist", "不存在该用户");
         }
         // 获取用户头像路径
-        CustomPutRet customPutRet = qiNiuService.upload(file);
-        String imageUrl = customPutRet.getImageUrl();
+        ImagePutRet imagePutRet = qiNiuService.uploadImage(file);
+        String imageUrl = imagePutRet.getImageUrl();
         // 保存用户头像路径到数据库
         user.setIcon(imageUrl);
         user.setUpdateTime(new Date());

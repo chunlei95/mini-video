@@ -1,6 +1,6 @@
-package com.video.api.transfer;
+package com.video.api.transfer.user;
 
-import com.video.pojo.dto.UserRegisterDto;
+import com.video.pojo.dto.user.UserRegisterDto;
 import com.video.pojo.model.User;
 import com.video.pojo.vo.UserLoginVo;
 import com.video.pojo.vo.UserVo;
