@@ -52,7 +52,7 @@ public class MiniVideoException extends RuntimeException {
 
     public static void canNotBeNull(String key) {
         String message = key + " can't be null";
-        String zhMessage = key + "不能为空";
+        String zhMessage = key + " 不能为空";
         throw new MiniVideoException(ResponseCode.CAN_NOT_BE_NULL, message, zhMessage);
     }
 

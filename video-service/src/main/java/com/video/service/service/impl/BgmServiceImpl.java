@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author xzmeasy
@@ -42,6 +43,18 @@ public class BgmServiceImpl implements BgmService {
         int insert = bgmMapper.insert(bgm);
         if (insert != 1) {
             throw new MiniVideoException(ExceptionInfo.ADD_BGM_FAILED);
+        }
+        return bgm;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Bgm findById(String bgmId) {
+        Bgm bgm = bgmMapper.selectByPrimaryKey(bgmId);
+        if (Objects.isNull(bgm)) {
+            MiniVideoException.canNotBeNull(bgmId);
         }
         return bgm;
     }

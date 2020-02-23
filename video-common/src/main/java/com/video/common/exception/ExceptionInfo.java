@@ -12,19 +12,29 @@ public enum ExceptionInfo {
     USER_NOT_EXIST(1004, "user is not exist", "不存在该用户"),
 
     /**
-     * Exception info that upload bgm fail.
+     * Exception info that upload bgm failed.
      */
-    ADD_BGM_FAILED(1005, "bgm add failed", "背景音乐添加失败"),
+    ADD_BGM_FAILED(1005, "failed to add bgm", "背景音乐添加失败"),
 
     /**
-     * Exception info that upload video fail.
+     * Exception info that upload video failed.
      */
-    VIDEO_UPLOAD_FAILED(1006, "video upload failed", "视频上传失败"),
+    VIDEO_UPLOAD_FAILED(1006, "failed to upload video", "视频上传失败"),
 
     /**
      * Exception info that file size limit.
      */
-    FILE_SIZE_LIMIT(1007, "file size limit", "文件大小超过限制");
+    FILE_SIZE_LIMIT(1007, "file size limit", "文件大小超过限制"),
+
+    /**
+     * Exception info that failed to merge video and audio.
+     */
+    MERGE_VIDEO_AUDIO_FAILED(1008, "merge video and audio failed", "合并音频和视频失败"),
+
+    /**
+     * Exception info that failed to create cover for video.
+     */
+    CREATE_VIDEO_COVER_FAILED(1009, "failed to create cover for video", "创建视频封面失败");
 
 
     private Integer code;

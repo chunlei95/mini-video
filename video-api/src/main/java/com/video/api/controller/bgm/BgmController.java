@@ -44,7 +44,6 @@ public class BgmController {
         return ResponseResult.ok(bgms);
     }
 
-
     @ApiOperation("添加背景音乐")
     @PostMapping(value = "/bgm")
     public ResponseResult<Bgm> add(BgmAddDto bgmAddDto,

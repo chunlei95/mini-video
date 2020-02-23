@@ -24,4 +24,12 @@ public interface BgmService {
      * @return {@link Bgm} added.
      */
     Bgm add(Bgm bgm);
+
+    /**
+     * Find {@link Bgm} by id.
+     *
+     * @param bgmId Bgm id.
+     * @return {@link Bgm} that has specified id.
+     */
+    Bgm findById(String bgmId);
 }

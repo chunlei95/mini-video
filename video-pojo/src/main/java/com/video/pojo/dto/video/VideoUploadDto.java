@@ -30,7 +30,4 @@ public class VideoUploadDto {
     @ApiModelProperty("视频大小")
     private Long videoSize;
 
-    @ApiModelProperty("封面的路径")
-    private String coverPath;
-
 }
