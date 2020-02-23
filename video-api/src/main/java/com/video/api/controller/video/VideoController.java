@@ -7,17 +7,21 @@ import com.qiniu.autoconfigure.service.QiNiuService;
 import com.video.api.transfer.video.VideoTransfer;
 import com.video.api.util.user.UserUtil;
 import com.video.common.generator.IdGenerator;
+import com.video.common.page.PageResult;
 import com.video.common.response.ResponseResult;
 import com.video.pojo.dto.video.VideoUploadDto;
 import com.video.pojo.model.Bgm;
 import com.video.pojo.model.Video;
+import com.video.pojo.vo.video.VideoVo;
 import com.video.service.service.BgmService;
 import com.video.service.service.VideoService;
+import com.video.service.service.VideoVoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,15 +52,20 @@ public class VideoController {
 
     private final VideoService videoService;
 
+    private final VideoVoService videoVoService;
+
     public VideoController(VideoService videoService,
                            QiNiuService qiNiuService,
                            IdGenerator idGenerator,
-                           BgmService bgmService, FFMpegService ffMpegService) {
+                           BgmService bgmService,
+                           FFMpegService ffMpegService,
+                           VideoVoService videoVoService) {
         this.videoService = videoService;
         this.qiNiuService = qiNiuService;
         this.idGenerator = idGenerator;
         this.bgmService = bgmService;
         this.ffMpegService = ffMpegService;
+        this.videoVoService = videoVoService;
     }
 
     @ApiOperation("上传视频")
@@ -106,6 +115,18 @@ public class VideoController {
         // 上传视频信息到数据库
         Video result = videoService.add(uploadVideo);
         return ResponseResult.ok(result);
+    }
+
+    @GetMapping("/video/list")
+    public ResponseResult<PageResult<VideoVo>> findAllByPage(Integer pageNum, Integer pageSize) {
+        if (Objects.isNull(pageNum) || pageNum <= 0) {
+            pageNum = 1;
+        }
+        if (Objects.isNull(pageSize) || pageSize <= 0) {
+            pageSize = 8;
+        }
+        PageResult<VideoVo> videoVoPageResult = videoVoService.findAllByPage(pageNum, pageSize);
+        return ResponseResult.ok(videoVoPageResult);
     }
 
 }

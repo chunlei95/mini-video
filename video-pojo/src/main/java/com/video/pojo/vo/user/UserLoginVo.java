@@ -1,17 +1,17 @@
-package com.video.pojo.vo;
+package com.video.pojo.vo.user;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 import java.util.Date;
 
 /**
- * View object used to deliver user information to front end.
- *
  * @author xzmeasy
- * @date 2020/2/4
+ * @date 2020/2/1
  */
 @Data
-public class UserVo {
+@ApiModel("用户注册逻辑的返回数据")
+public class UserLoginVo {
 
     private String id;
 
@@ -26,6 +26,8 @@ public class UserVo {
     private Integer praiseCount;
 
     private Integer followCount;
+
+    private String userToken;
 
     private Date createTime;
 

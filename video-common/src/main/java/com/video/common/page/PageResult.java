@@ -1,5 +1,6 @@
 package com.video.common.page;
 
+import com.github.pagehelper.PageInfo;
 import lombok.Data;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class PageResult<T> {
 
     private Integer pageSize;
 
-    private Integer totalCount;
+    private Long totalCount;
 
     private Integer totalPage;
 
@@ -25,21 +26,19 @@ public class PageResult<T> {
 
     private List<T> data;
 
-    private PageResult(int pageNum, int pageSize, Integer totalCount, List<T> data) {
-        this.pageNum = pageNum;
-        this.pageSize = pageSize;
-        this.totalCount = totalCount;
-        this.data = data;
-        totalPage = totalCount / pageSize;
-        if (totalCount % pageSize != 0) {
-            totalPage += 1;
-        }
-        isFirstPage = pageNum == 1;
-        isLastPage = (totalCount <= pageSize && pageNum == 1) || (totalPage == pageSize) || (totalPage == 0);
+    private PageResult(PageInfo<T> pageInfo) {
+        this.totalPage = pageInfo.getPages();
+        this.isLastPage = pageInfo.isIsLastPage();
+        this.isFirstPage = pageInfo.isIsFirstPage();
+        this.totalCount = pageInfo.getTotal();
+        this.pageNum = pageInfo.getPageNum();
+        this.pageSize = pageInfo.getPageSize();
+        this.data = pageInfo.getList();
     }
 
-    public static <T> PageResult<T> from(int pageNum, int pageSize, Integer totalCount, List<T> data) {
-        return new PageResult<>(pageNum, pageSize, totalCount, data);
+    public static <T> PageResult<T> from(PageInfo<T> pageInfo) {
+        return new PageResult<>(pageInfo);
     }
+
 
 }

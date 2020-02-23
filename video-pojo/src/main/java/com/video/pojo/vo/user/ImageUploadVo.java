@@ -1,4 +1,4 @@
-package com.video.pojo.vo;
+package com.video.pojo.vo.user;
 
 import lombok.Data;
 

@@ -2,8 +2,8 @@ package com.video.api.transfer.user;
 
 import com.video.pojo.dto.user.UserRegisterDto;
 import com.video.pojo.model.User;
-import com.video.pojo.vo.UserLoginVo;
-import com.video.pojo.vo.UserVo;
+import com.video.pojo.vo.user.UserLoginVo;
+import com.video.pojo.vo.user.UserVo;
 import org.springframework.beans.BeanUtils;
 
 /**

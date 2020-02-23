@@ -4,6 +4,7 @@ import com.video.common.exception.ExceptionInfo;
 import com.video.common.exception.MiniVideoException;
 import com.video.common.util.SpringUtil;
 import com.video.pojo.model.User;
+import com.video.pojo.vo.user.UserLoginVo;
 import com.video.service.service.UserService;
 import org.springframework.lang.NonNull;
 
@@ -18,7 +19,7 @@ import java.util.UUID;
 public class UserUtil {
 
     /**
-     * Generate the value of {@link com.video.pojo.vo.UserLoginVo#userToken userToken}
+     * Generate the value of {@link UserLoginVo#userToken userToken}
      *
      * @return Generated value of {@code userToken}
      */
